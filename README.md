@@ -1,7 +1,7 @@
 # Go-Qibla
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/RadhiFadlillah/go-qibla)](https://goreportcard.com/report/github.com/RadhiFadlillah/go-qibla)
-[![GoDoc](https://godoc.org/github.com/RadhiFadlillah/go-qibla?status.png)](https://godoc.org/github.com/RadhiFadlillah/go-qibla)
+[![Go Report Card][report-badge]][report-url]
+[![Go Reference][doc-badge]][doc-url]
 
 Go-Qibla is a Go package for calculating qibla direction for a specific location.
 
@@ -15,7 +15,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/RadhiFadlillah/go-qibla"
+	"github.com/hablullah/go-qibla"
 )
 
 func main() {
@@ -35,8 +35,15 @@ Which will give us following results :
 
 ## Resources
 
-1. Anugraha, R. 2012. _Mekanika Benda Langit_. ([PDF](https://simpan.ugm.ac.id/s/GcxKuyZWn8Rshnn))
+1. Anugraha, R. 2012. _Mekanika Benda Langit_. ([PDF][pdf-rinto-anugraha])
 
 ## License
 
-Go-Qibla is distributed using [MIT](http://choosealicense.com/licenses/mit/) license.
+Go-Qibla is distributed using [MIT] license.
+
+[report-badge]: https://goreportcard.com/badge/github.com/hablullah/go-qibla
+[report-url]: https://goreportcard.com/report/github.com/hablullah/go-qibla
+[doc-badge]: https://pkg.go.dev/badge/github.com/hablullah/go-qibla.svg
+[doc-url]: https://pkg.go.dev/github.com/hablullah/go-qibla
+[pdf-rinto-anugraha]: https://simpan.ugm.ac.id/s/GcxKuyZWn8Rshnn
+[MIT]: http://choosealicense.com/licenses/mit/

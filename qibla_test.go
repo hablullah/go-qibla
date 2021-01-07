@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/RadhiFadlillah/go-qibla"
+	"github.com/hablullah/go-qibla"
 )
 
 func Test_Qibla_Get(t *testing.T) {
