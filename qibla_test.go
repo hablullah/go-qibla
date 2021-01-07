@@ -18,13 +18,22 @@ func Test_Qibla_Get(t *testing.T) {
 	}
 
 	for _, data := range testData {
-		qiblaDirection, _ := qibla.Get(data.Latitude, data.Longitude)
+		qiblaDirection, qiblaDistance := qibla.Get(data.Latitude, data.Longitude)
+
 		if math.Round((data.Direction-qiblaDirection)*1000) != 0 {
-			t.Errorf("[%.0f, %.0f]: want %f got %f\n",
+			t.Errorf("[%.0f, %.0f]: direction want %f got %f\n",
 				data.Latitude,
 				data.Longitude,
 				data.Direction,
 				qiblaDirection)
+		}
+
+		if math.Round((data.Distance-qiblaDistance)*1000) != 0 {
+			t.Errorf("[%.0f, %.0f]: distance want %f got %f\n",
+				data.Latitude,
+				data.Longitude,
+				data.Distance,
+				qiblaDistance)
 		}
 	}
 }
@@ -33,6 +42,7 @@ type TestData struct {
 	Latitude  float64
 	Longitude float64
 	Direction float64
+	Distance  float64
 }
 
 func openTestFile(csvFilePath string) ([]TestData, error) {
@@ -71,10 +81,16 @@ func openTestFile(csvFilePath string) ([]TestData, error) {
 			continue
 		}
 
+		distance, err := strconv.ParseFloat(record[3], 64)
+		if err != nil {
+			continue
+		}
+
 		dataList = append(dataList, TestData{
 			Latitude:  latitude,
 			Longitude: longitude,
 			Direction: direction,
+			Distance:  distance,
 		})
 	}
 
