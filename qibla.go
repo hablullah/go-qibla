@@ -1,40 +1,37 @@
 package qibla
 
 import (
-	"errors"
-
-	"github.com/shopspring/decimal"
+	"math"
 )
 
 var (
-	kaabaLatitude  = decimal.NewFromFloat(21.42250833)
-	kaabaLongitude = decimal.NewFromFloat(39.82616111)
-
-	// ErrIncalculable is error when qibla direction
-	ErrIncalculabe = errors.New("qibla direction can't be calculated")
+	kaabaLatitude  = rad(21.42250833)
+	kaabaLongitude = rad(39.82616111)
 )
 
-// Get returns the direction to qibla from specified location.
-func Get(latitude float64, longitude float64) (float64, error) {
-	// Convert latitude and longitude to decimal
-	locationLatitude := decimal.NewFromFloat(latitude)
-	locationLongitude := decimal.NewFromFloat(longitude)
+// Get returns the direction to qibla from specified coordinate.
+func Get(latitude, longitude float64) float64 {
+	// Convert coordinate to radian
+	latitude = rad(latitude)
+	longitude = rad(longitude)
 
-	// Calculate qibla direction
-	diffLongitude := kaabaLongitude.Sub(locationLongitude)
-	B := cos(locationLatitude).Mul(tan(kaabaLatitude))
-	C := sin(locationLatitude).Mul(cos(diffLongitude))
-	Y := sin(diffLongitude)
-	X := B.Sub(C)
+	// Calculate direction
+	y := math.Sin(kaabaLongitude - longitude)
+	x := math.Cos(latitude)*math.Tan(kaabaLatitude) -
+		math.Sin(latitude)*math.Cos(longitude-kaabaLongitude)
 
-	if X.Equal(decimal.Zero) {
-		return 0, ErrIncalculabe
-	}
-
-	direction, _ := atan(Y.Div(X)).Float64()
+	direction := degree(math.Atan2(y, x))
 	if direction < 0 {
-		direction += 360.0
+		direction += 360
 	}
 
-	return direction, nil
+	return direction
+}
+
+func rad(degree float64) float64 {
+	return degree * math.Pi / 180
+}
+
+func degree(rad float64) float64 {
+	return rad * 180 / math.Pi
 }

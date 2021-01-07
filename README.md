@@ -7,7 +7,7 @@ Go-Qibla is a Go package for calculating qibla direction for a specific location
 
 ## Usage Examples
 
-For example, we want to get qibla direction for Jakarta, Indonesia :
+Let's say we want to get qibla direction for Jakarta, Indonesia :
 
 ```go
 package main
@@ -22,7 +22,7 @@ func main() {
 	// Try to calculate qibla direction from Jakarta
 	jktLatitude := -6.16978
 	jktLongitude := 106.83073
-	qiblaDirection, _ := qibla.Get(jktLatitude, jktLongitude)
+	qiblaDirection := qibla.Get(jktLatitude, jktLongitude)
 	fmt.Println(qiblaDirection)
 }
 ```
