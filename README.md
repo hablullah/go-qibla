@@ -20,17 +20,19 @@ import (
 
 func main() {
 	// Try to calculate qibla direction from Jakarta
-	jktLatitude := -6.16978
-	jktLongitude := 106.83073
-	qiblaDirection := qibla.Get(jktLatitude, jktLongitude)
-	fmt.Println(qiblaDirection)
+	jktLatitude := -6.169777778
+	jktLongitude := 106.8307333
+	qiblaDirection, qiblaDistance := qibla.Get(jktLatitude, jktLongitude)
+	fmt.Printf("DIRECTION: %f degrees\n", qiblaDirection)
+	fmt.Printf("DISTANCE: %f km\n", qiblaDistance)
 }
 ```
 
 Which will give us following results :
 
 ```
-295.14345941710076
+DIRECTION: 295.143458 degrees
+DISTANCE: 7918.900254 km
 ```
 
 ## Resources

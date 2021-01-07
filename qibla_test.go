@@ -18,7 +18,7 @@ func Test_Qibla_Get(t *testing.T) {
 	}
 
 	for _, data := range testData {
-		qiblaDirection := qibla.Get(data.Latitude, data.Longitude)
+		qiblaDirection, _ := qibla.Get(data.Latitude, data.Longitude)
 		if math.Round((data.Direction-qiblaDirection)*1000) != 0 {
 			t.Errorf("[%.0f, %.0f]: want %f got %f\n",
 				data.Latitude,
